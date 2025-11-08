@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Tokyo Revengers{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/toman6.jpeg') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🔝 Navbar -->
+  <header>
+    <div class="nav-container">
+   <div class="logo">🌀 Tokyo Revengers</div>
+    <nav>
+<a href="{{ url_for('home') }}"><i data-lucide="home"></i><span>Home</span></a>
+<a href="{{ url_for('characters') }}"><i data-lucide="users"></i><span>Characters</span></a>
+<a href="{{ url_for('episodes') }}"><i data-lucide="film"></i><span>Episodes</span></a>
+<a href="{{ url_for('gang') }}"><i data-lucide="shield-plus"></i><span>Join Gang</span></a>
+    </nav>
+</div>
+  </header>
+
+  <!-- 🔽 Page Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>© 2025 Tokyo Revengers Fan Page. All rights reserved.</p>
+  </footer>  
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script>
+  lucide.createIcons();
+</script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

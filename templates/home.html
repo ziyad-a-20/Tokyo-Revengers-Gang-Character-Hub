@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block title %}Home | Tokyo Revengers{% endblock
+%} {% block content %}
+<section class="hero">
+
+  <img src="{{ url_for('static', filename='images/toman6.jpeg') }}" alt="Tokyo Revengers" class="bg-img" loading="lazy">
+
+  
+  <div class="overlay">
+    <ul class="particles">
+      <li></li><li></li><li></li><li></li><li></li>
+      <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+  </div>
+
+  
+  <div class="glass-box" data-aos="fade-up" data-aos-duration="1200" >
+    <h2 data-aos="fade-up" data-aos-duration="1200">🎌 Welcome to <span class="highlight">Tokyo Revengers</span> Universe!</h2>
+    <p data-aos="fade-up" data-aos-delay="400">Explore legendary characters, unforgettable arcs, and relive epic moments.</p>
+    <a href="/characters" class="cta-button">🔥 Explore the Universe !</a>
+  </div>
+</section>
+
+{% endblock %}

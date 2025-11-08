@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% block title %}Episodes | Tokyo Revengers{% endblock %}
+
+{% block content %}
+
+
+<div class="episode-section">
+  <!-- Filter & Sort By -->
+   <div class="filter-wrapper">
+  <section class="episode-filter-bar">
+    <div class="filter-item">
+      <label for="arc-select">Filter by Arc:</label>
+      <select id="arc-select" class="styled-dropdown">
+        <option value="All">All Arcs</option>
+        <option value="Toman Arc">Toman Arc</option>
+        <option value="Valhalla Arc">Valhalla Arc</option>
+        <option value="Black Dragon Arc">Black Dragon Arc</option>
+        <option value="Tenjiku Arc">Tenjiku Arc</option>
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="sort-select">Sort by:</label>
+      <select id="sort-select" class="styled-dropdown">
+        <option value="default">Default</option>
+        <option value="release">Release Date</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+  </section>
+  </div>
+  <!-- 📺 Episode Cards -->
+  <div class="card-grid" id="episode-cards" style="margin-top: 45px;">
+    {% for ep in episodes %}
+      <div class="card episode-card" 
+           data-arc="{{ ep[2] }}" 
+           data-rating="{{ ep[4] }}" 
+           data-release="{{ ep[3] }}" 
+           onclick="openModal('{{ loop.index0 }}')">
+        <p class="episode-num">#{{ loop.index }}</p>
+        <img src="{{ url_for('static', filename='images/thumbnails/' + (ep[5] if ep[5] else 'default.jpg')) }}" alt="{{ ep[0] }} Thumbnail">
+        <h3>{{ ep[0] }}</h3>
+        <p><strong>Arc:</strong> {{ ep[2] }}</p>
+        <p><strong>Release Date:</strong> {{ ep[3] }}</p>
+        <p><strong>Rating:</strong> ⭐ {{ ep[4] }}</p>
+      </div>
+
+      <!-- 💬 Modal -->
+      <div class="modal" id="modal-{{ loop.index0 }}" onclick="closeModal(event, '{{ loop.index0 }}')">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal(event, '{{ loop.index0 }}')">&times;</span>
+          <img src="{{ url_for('static', filename='images/thumbnails/' + (ep[5] if ep[5] else 'default.jpg')) }}" alt="{{ ep[0] }} Thumbnail" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+          <h3>#{{ loop.index }} — {{ ep[0] }}</h3>
+          <p>{{ ep[1] }}</p>
+          <p><strong>Arc:</strong> {{ ep[2] }}</p>
+          <p><strong>Release Date:</strong> {{ ep[3] }}</p>
+          <p><strong>Rating:</strong> ⭐ {{ ep[4] }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const arcSelect = document.getElementById("arc-select");
+  const sortSelect = document.getElementById("sort-select");
+  const episodeCards = Array.from(document.querySelectorAll(".episode-card"));
+
+  arcSelect.addEventListener("change", filterEpisodes);
+  sortSelect.addEventListener("change", sortEpisodes);
+
+  function filterEpisodes() {
+    const selectedArc = arcSelect.value;
+    episodeCards.forEach(card => {
+      const match = selectedArc === "All" || card.dataset.arc === selectedArc;
+      card.style.display = match ? "block" : "none";
+    });
+  }
+
+  function sortEpisodes() {
+    const selectedSort = sortSelect.value;
+    const container = document.getElementById("episode-cards");
+    const sorted = [...episodeCards];
+
+    sorted.sort((a, b) => {
+      if (selectedSort === "release") {
+        return new Date(a.dataset.release) - new Date(b.dataset.release);
+      } else if (selectedSort === "rating") {
+        return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+      }
+      return 0;
+    });
+
+    sorted.forEach(card => container.appendChild(card));
+  }
+
+  function openModal(index) {
+    document.getElementById(`modal-${index}`).style.display = "block";
+  }
+
+  function closeModal(event, index) {
+    if (event.target.classList.contains("modal") || event.target.classList.contains("close")) {
+      document.getElementById(`modal-${index}`).style.display = "none";
+    }
+  }
+</script>
+{% endblock %}

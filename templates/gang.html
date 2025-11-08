@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}Join the Gang | Tokyo Revengers{% endblock %}
+{% block content %}
+<div class="join-section">
+<div class="join-container">
+  <div class="form-box">
+    <h2>💌 Become a Member Now !</h2>
+    <div class="join-bio-card">
+  <p>
+    <span class="emoji">📢</span>
+    <strong class="highlight">Step into the world of <span>Tokyo Revengers</span>.</strong><br>
+    Pick your gang, earn your place — <em>legends are made, not born.</em>
+  </p>
+</div>
+    
+    <form method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+    
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+    
+      <label for="fav_characters">Favorite Character(s)</label>
+      <input type="text" id="fav_characters" name="fav_characters" placeholder="Favorite Character(s)" required>
+    
+      <label for="gang-select">Select Gang</label>
+      <select name="gang" id="gang-select" required>
+        <option value="">Select Gang</option>
+        <option value="toman">Tokyo Manji Gang</option>
+        <option value="valhalla">Valhalla</option>
+        <option value="blackdragon">Black Dragon</option>
+        <option value="tenjiku">Tenjiku</option>
+        <option value="moebius">Moebius</option>
+        <option value="bonten">Bonten</option>
+        <option value="brahman">Brahman</option>
+        <option value="rokuhara">Rokuhara Tandai</option>
+      </select>
+
+      <button type="submit">Join Now 🏍️</button>
+    </form>
+  </div>
+
+  <div class="gang-wrapper">
+  <div class="gang-image" id="gang-image-container">
+    <!-- ✅ Default banner (initial display) -->
+    <img id="gang-image" src="{{ url_for('static', filename='images/TR.jpeg') }}" alt="Gang Members">
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ✅ JavaScript to handle image switching -->
+<script>
+  const select = document.getElementById("gang-select");
+  const image = document.getElementById("gang-image");
+  const container = document.getElementById("gang-image-container");
+
+  const gangImages = {
+    toman: "{{ url_for('static', filename='images/toman2.jpeg') }}",
+    valhalla: "{{ url_for('static', filename='images/valhalla.jpeg') }}",
+    blackdragon: "{{ url_for('static', filename='images/bd.jpeg') }}",
+    tenjiku: "{{ url_for('static', filename='images/tenjiku.jpeg') }}",
+    moebius: "{{ url_for('static', filename='images/moebius.jpeg') }}",
+    bonten: "{{ url_for('static', filename='images/bonten.jpg') }}",
+    brahman: "{{ url_for('static', filename='images/brahman.jpeg') }}",
+    rokuhara: "{{ url_for('static', filename='images/roku.jpeg') }}"
+  };
+
+  select.addEventListener("change", () => {
+    const selected = select.value.toLowerCase();
+    image.classList.add("fade-out");
+
+    setTimeout(() => {
+      image.src = gangImages[selected] || "{{ url_for('static', filename='images/TR.jpeg') }}";
+      image.classList.remove("fade-out");
+
+      // Reset container styling
+      container.classList.remove("portrait-mode");
+
+      // Only Brahman and Rokuhara need portrait display
+      if (["brahman", "rokuhara"].includes(selected)) {
+        container.classList.add("portrait-mode");
+      }
+    }, 150);
+  });
+</script>
+
+
+{% endblock %}
