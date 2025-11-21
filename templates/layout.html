@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Tokyo Revengers{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
   <link rel="preload" as="image" href="{{ url_for('static', filename='images/toman6.jpeg') }}">
@@ -14,7 +15,12 @@
   <header>
     <div class="nav-container">
    <div class="logo">🌀 Tokyo Revengers</div>
-    <nav>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="nav-menu">
 <a href="{{ url_for('home') }}"><i data-lucide="home"></i><span>Home</span></a>
 <a href="{{ url_for('characters') }}"><i data-lucide="users"></i><span>Characters</span></a>
 <a href="{{ url_for('episodes') }}"><i data-lucide="film"></i><span>Episodes</span></a>
@@ -38,6 +44,23 @@
   </script>
   <script>
   lucide.createIcons();
+  
+  // Hamburger Menu Toggle
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+  
+  // Close menu when link is clicked
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
 </script>
   {% block scripts %}{% endblock %}
 </body>

@@ -46,9 +46,13 @@ header {
   align-items: center;
   background-color: linear-gradient(to right, #111, #1a1a1a);
   padding: 10px 30px;
+  max-width: 100%;
 }
 nav {
-  margin-top: 10px;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin-top: 0;
 }
 nav a {
   position: relative;
@@ -114,6 +118,27 @@ nav a.active span::after {
   font-size: 1.6em;
   font-weight: 800;
   color: white;
+  white-space:  nowrap;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 /* Footer */
@@ -170,34 +195,6 @@ footer {
 
 .hero p {
   font-size: 1.1em;
-}
-@media (max-width: 768px) {
-  .hero-text h2 {
-    font-size: 1.8em;
-  }
-  .hero-text p {
-    font-size: 1em;
-  }
-  .nav-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-/* 📱 RESPONSIVE TWEAKS */
-@media (max-width: 768px) {
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 60px 20px;
-  }
-
-  .hero h2 {
-    font-size: 1.8em;
-  }
 }
 
 .overlay {
@@ -666,21 +663,6 @@ footer {
   cursor: pointer;
   width: auto;
 } 
-/* 📱 Responsive tweaks */
-@media (max-width: 768px) {
-  .filter-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .filter-bar input[type="text"],
-  .filter-bar select {
-    width: 90%;
-    max-width: 300px;
-  }
-}
 
 /* Label for Sort Dropdown */
 .filter-bar label {
@@ -777,16 +759,6 @@ footer {
   width: 250px;
   max-width: 90%;
   transition: all 0.3s ease;
-  /* padding: 6px 12px;
-  font-size: 1em;
-  font-family: "Poppins", sans-serif;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 6px;
-  background-color: #fff;
-  color: #333;
-  width: 250px;
-  max-width: 90%; */
 }
 @media (max-width: 600px) {
   .filter-bar {
@@ -846,20 +818,6 @@ footer {
   padding: 15px 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   max-width: 100%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  border-radius: 16px;
-  padding: 25px 20px;
-  margin: 25px auto;
-  background-color: none;
-  backdrop-filter: none;
-  border: none;
-  box-shadow: none;
-  font-family: "Poppins", sans-serif;
-  transition: all 0.3s ease-in-out; */
 }
 
 .episode-filter-bar label {
@@ -942,28 +900,7 @@ footer {
   background-color: #fff;
   color: #333;
 }
-@media (max-width: 600px) {
-  .styled-dropdown {
-    width: 90%;
-    max-width: 300px;
-  }
 
-  .filter-item {
-    width: 100%;
-    align-items: stretch;
-  }
-
-  .filter-item label {
-    margin-bottom: 6px;
-  }
-}
-
-@media (max-width: 768px) {
-  #arc-select {
-    width: 90%;
-    max-width: 300px;
-  }
-}
 /* episode card */
 .episode-card {
   background: #1a1a1a;
@@ -1063,27 +1000,6 @@ footer {
 .close:hover {
   color: #900;
 }
-
-/* ---------------------------------------------------------------- */
-
-/* 🏍 JOIN GANG FORM */
-/* 🔥 Container Animation */
-
-/* .join-section {
-  background: linear-gradient(135deg, #4a0000 0%, #ff5e5e 50%, #4a0000 100%);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
-  padding: 50px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-} */
 
 .join-section {
   background: linear-gradient(
@@ -1297,40 +1213,9 @@ footer {
   transform: scale(1.05);
 }
 
-/* 📱 Mobile Form */
-@media (max-width: 600px) {
-  .form-box {
-    margin: 30px 20px;
-    padding: 25px 20px;
-  }
-
-  .form-box input,
-  .form-box button {
-    font-size: 1em;
-  }
-}
 
 /* 🖼️ Gang Image Section */
 .gang-image {
-  /* flex: 1;
-  width: 100%;
-  max-width: 600px;
-  aspect-ratio: 16 / 10;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 18px;
-  margin-top: 30px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(20px);
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25),
-    0 0 25px rgba(255, 255, 255, 0.05);
-  overflow: hidden;
-  animation: subtleFloat 7s ease-in-out infinite;
-  transition: all 0.4s ease; */
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: 20px;
@@ -1414,18 +1299,6 @@ footer {
   transform: scale(0.95);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-@media (max-width: 768px) {
-  .gang-image {
-    max-width: 100%;
-    aspect-ratio: 16 / 9;
-    padding: 14px;
-    margin-top: 40px;
-  }
-
-  .gang-image img {
-    border-radius: 14px;
-  }
-}
 .gang-wrapper {
   flex: 1;
   width: 100%;
@@ -1445,4 +1318,356 @@ footer {
   object-fit: contain;
   object-position: center;
   border-radius: 18px;
+}
+
+
+/* 📱 MOBILE-FIRST IMPROVEMENTS */
+
+/* NAVBAR - Add Hamburger Menu */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    gap: 0;
+    margin-top: 0;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  nav a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 0;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+  }
+}
+
+/* HERO SECTION */
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    padding: 20px;
+  }
+
+  .glass-box {
+    padding: 25px 20px;
+    max-width: 95%;
+  }
+
+  .glass-box h2 {
+    font-size: 2rem;
+  }
+
+  .glass-box p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 70vh;
+  }
+
+  .glass-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .glass-box p {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+/* CHARACTER CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 30px 15px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card h3 {
+    font-size: 1.1em;
+  }
+}
+
+/* FILTER BAR */
+.filter-bar {
+  flex-wrap: wrap;
+  padding: 12px 15px;
+  gap: 12px;
+  margin: 20px auto;
+  max-width: 95%;
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filter-bar .filter-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-bar select,
+  #searchInput {
+    width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-bar label {
+    font-size: 14px;
+  }
+
+  .filter-bar select,
+  #searchInput {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* EPISODES SECTION */
+.episode-filter-bar {
+  flex-wrap: wrap;
+  padding: 12px 15px;
+  gap: 12px;
+  margin: 20px auto;
+  max-width: 95%;
+}
+
+@media (max-width: 768px) {
+  .episode-filter-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-item {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .episode-filter-bar select {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .episode-filter-bar label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    padding: 15px 10px;
+  }
+
+  .episode-card {
+    padding: 12px;
+  }
+
+  .episode-card img {
+    height: 150px;
+  }
+}
+
+/* JOIN GANG FORM */
+.join-container {
+  flex-direction: column;
+  padding: 30px 15px;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .join-container {
+    padding: 20px 10px;
+    gap: 20px;
+  }
+
+  .form-box {
+    max-width: 100%;
+    padding: 25px 20px;
+    margin: 0;
+  }
+
+  .form-box h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-box label {
+    font-size: 0.95rem;
+  }
+
+  .form-box input,
+  .form-box select {
+    padding: 12px;
+    font-size: 16px; /* Prevents iOS zoom */
+    margin-bottom: 15px;
+  }
+
+  .form-box button {
+    padding: 11px 15px;
+    font-size: 0.95rem;
+  }
+
+  .gang-wrapper {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .gang-image {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .join-section {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .form-box {
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  .form-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .join-bio-card {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .gang-image {
+    aspect-ratio: 3 / 2;
+    padding: 12px;
+  }
+
+  .gang-image img {
+    border-radius: 12px;
+  }
+}
+
+/* MODAL IMPROVEMENTS */
+@media (max-width: 768px) {
+  .img-modal {
+    backdrop-filter: blur(2px);
+  }
+
+  .modal-content-img {
+    max-width: 95%;
+    max-height: 70vh;
+  }
+
+  #caption {
+    font-size: 1.1rem;
+    bottom: 20px;
+  }
+
+  .close-zoom {
+    font-size: 28px;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    margin: 20% auto;
+    padding: 15px;
+    max-width: 95%;
+  }
+
+  .modal-content img {
+    max-width: 100%;
+  }
+
+  .modal-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
 }
